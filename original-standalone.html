@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sociality — Het Skatepark | Eerste in-chat versie</title>
+<style>
+:root{--pink:#ec008c;--pink-dark:#98115c;--text:#f7f4f6;--surface:#090909;--border:#252525;--tile:#303030}
+*{box-sizing:border-box}html{background:#000;color:var(--text);scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;line-height:1.45}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #f39bc9;outline-offset:3px}button:disabled{cursor:not-allowed;opacity:.38}
+.shell{max-width:1235px;margin:44px auto 28px;border:1px solid #282828;border-radius:32px;padding:20px 20px 26px;background:#020202}
+.header{background:#95115d;border-radius:27px;padding:18px 20px 19px;display:flex;justify-content:space-between;align-items:center;gap:18px;min-height:130px}
+.header .eyebrow{font-size:15px;letter-spacing:.01em;font-weight:800;color:#fff}.logo{font-size:33px;font-weight:850;line-height:1.15;margin:8px 0 5px}.logo .heart{font-size:30px}.sub{font-size:14px;letter-spacing:.03em}.story-marker{text-align:right}.story-marker span{font-size:14px;opacity:.93}.story-marker strong{display:block;font-size:25px;margin-top:4px}
+.board-wrap{position:relative;margin-top:20px;border-radius:23px;overflow:hidden;background:#3c241c;border:7px solid #2a1b18;box-shadow:0 9px 20px #0007}
+.board-wrap svg{width:100%;height:auto;display:block}.slot{transition:opacity .4s,filter .4s}.slot .award{display:none}.slot.earned .award{display:block}.slot.earned .slot-fill{opacity:1!important}.slot.earned .slot-label{fill:#fff!important}.slot.earned .slot-small{fill:#fff!important}.slot.earned{filter:drop-shadow(0 4px 4px #27142455)}
+.board-stage{transition:transform .22s}.stage-cell.active rect{fill:#ec008c}.stage-cell.active text{fill:#fff}.stage-cell.past rect{fill:#eab2cf}.stage-cell.past text{fill:#8d1157}
+.game-body{padding:24px 0 4px}.game-body h2{font-size:29px;margin:0 0 21px;font-weight:750}.game-body p{font-size:23px;line-height:1.78;margin:0 0 22px}.category-list{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}.category-list:empty{display:none}.category{font-size:13px;border-radius:8px;padding:6px 11px;background:#282828;color:#eee;font-weight:700}.story-divider{border:0;border-top:1px solid #242424;margin:16px 0 28px}.choices-heading{font-weight:850;font-size:24px;color:#ed008f;margin:0 0 19px}.choices{display:grid;gap:19px}
+.choice{display:flex;align-items:center;text-align:left;width:100%;min-height:98px;background:#2c2c2c;border:1px solid #4d4d4d;border-radius:18px;color:#f2f2f2;padding:16px 19px;gap:18px;transition:background .15s,border .15s}.choice:hover{background:#383438;border-color:#c84b92}.choice .letter{flex:none;min-width:55px;height:56px;border-radius:11px;background:#fadbe9;color:#a80065;display:grid;place-items:center;font-size:22px;font-weight:850}.choice .detail{flex:1;font-size:22px;font-weight:750;line-height:1.38}.choice .arr{font-size:22px;color:#ddd;margin:0 5px}
+.bottom{margin-top:23px}.joker-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.joker-label{font-size:22px;font-weight:750}.joker-small{font-size:17px;color:#bbb}.pill-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:10px 0 17px}.pill{background:#090909;color:#eee;border:1px solid #434343;border-radius:27px;padding:10px 21px;font-size:20px;font-weight:620}.pill:hover:not(:disabled){background:#2b262b}.pill small{font-size:16px}.btn-primary{background:#ea008c;color:#fff;border:none;border-radius:14px;padding:12px 20px;font-weight:750}.btn-primary:hover{background:#bd006e}.hide{display:none!important}.help{border:1px solid #343434;border-radius:14px;background:#171217;padding:17px 20px;margin:15px 0;color:#eae5e9;font-size:16px}.help h3{color:#ff83c5;margin:0 0 6px}.help p{margin:8px 0}.help button{display:block;margin:8px 0;width:100%;text-align:left}.route{font-size:12px;color:#bbb;letter-spacing:.06em;line-height:1.7}.route strong{display:block;color:#fff;font-size:15px;letter-spacing:0}.feedback{font-size:17px;color:#fae3f1;border-left:3px solid #d10083;padding:11px 15px;background:#22131e;border-radius:0 9px 9px 0}.complete{border:1px solid #455b48;background:#12251a;padding:20px;border-radius:14px}.complete h3{margin:0 0 8px;color:#c7f3d0}.concept-progress{margin:18px 0 20px;padding:18px;border:1px solid #292929;border-radius:14px;background:#0b0b0b}.progress-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px;font-size:14px;font-weight:750}.progress-title b{color:#fa73c0;font-size:21px}.bar{height:9px;border-radius:6px;background:#3f303b;overflow:hidden}.bar>div{height:100%;width:0;background:var(--pink);transition:width .4s}.pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.mini{display:inline-flex;gap:5px;align-items:center;border-radius:8px;padding:6px 9px;color:#a9a9a9;background:#252125;font-size:12px}.mini.on{color:#fff;background:#9a1465}
+@media(max-width:800px){.shell{margin:10px 8px;padding:11px;border-radius:18px}.header{border-radius:15px;min-height:100px}.header .eyebrow{font-size:10px}.header .logo{font-size:24px}.header .sub{font-size:10px}.story-marker strong{font-size:17px}.story-marker span{font-size:11px}.board-wrap{border-width:4px;margin-top:10px;border-radius:13px}.game-body h2{font-size:24px}.game-body p{font-size:17px;line-height:1.6}.choice{min-height:80px;padding:12px;gap:12px;border-radius:13px}.choice .letter{min-width:45px;height:47px;font-size:18px}.choice .detail{font-size:16px}.choices-heading{font-size:20px}.joker-label{font-size:18px}.joker-small{font-size:14px}.pill{font-size:14px;padding:9px 13px}.bottom{margin-top:18px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="header"><div><div class="eyebrow">INNERGAMES × HAN</div><div class="logo">SOCIALITY <span class="heart">♥</span></div><div class="sub">EEN KIJK OP SOCIALE KWALITEIT</div></div><div class="story-marker"><span>1ST STORY</span><strong>HET SKATEPARK</strong></div></header>
+<div class="board-wrap">
+  <svg id="board" viewBox="0 0 1175 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sociality speelbord met acht categorieën en een pion op het speelspoor">
+   <defs><pattern id="wood" patternUnits="userSpaceOnUse" width="1200" height="74"><rect width="1200" height="74" fill="#352018"/><path d="M0 20H1200 M0 21H1200" stroke="#503326" stroke-width="4"/><path d="M0 23H1200" stroke="#241b17" opacity=".6"/></pattern></defs>
+   <rect width="1175" height="700" fill="url(#wood)"/>
+   <polygon points="119,76 1055,76 1147,680 33,680" fill="#ead0a8" stroke="#bd8c63" stroke-width="7"/>
+   <polygon points="139,93 1038,93 1121,658 60,658" fill="#f8e7cd"/>
+   <text x="207" y="149" fill="#ed008c" font-weight="900" font-size="39">SOCIALITY</text>
+   <text x="207" y="177" fill="#946279" font-weight="800" font-size="15">HET SKATEPARK</text>
+   <text x="940" y="159" fill="#955f72" font-weight="800" font-size="16">SPELBORD</text>
+   <text x="940" y="182" fill="#955f72" font-size="14">INNERGAMES</text>
+   <g id="slot-collectief" class="slot"><rect class="slot-fill" x="460" y="130" width="253" height="65" rx="13" fill="#ddbfaf" stroke="#b98267" stroke-width="2"/><text class="slot-label" x="586" y="160" font-size="24" font-weight="900" fill="#71584e" text-anchor="middle">COLLECTIEF</text><text class="slot-small" x="586" y="180" font-size="13" fill="#71584e" text-anchor="middle">MESO EN MACRO</text><text class="award" x="704" y="141" fill="#bd006f" font-size="19">✓</text></g>
+   <g id="slot-formeel" class="slot"><rect class="slot-fill" x="146" y="339" width="218" height="79" rx="14" fill="#ddbfaf" stroke="#b98267" stroke-width="2"/><text class="slot-label" x="255" y="373" font-size="26" font-weight="900" fill="#71584e" text-anchor="middle">FORMEEL</text><text class="slot-small" x="255" y="399" font-size="13" fill="#71584e" text-anchor="middle">METHODEN EN REGELS</text><text class="award" x="347" y="353" fill="#bd006f" font-size="19">✓</text></g>
+   <g id="slot-informeel" class="slot"><rect class="slot-fill" x="813" y="339" width="219" height="79" rx="14" fill="#ddbfaf" stroke="#b98267" stroke-width="2"/><text class="slot-label" x="922" y="374" font-size="26" font-weight="900" fill="#71584e" text-anchor="middle">INFORMEEL</text><text class="slot-small" x="922" y="399" font-size="13" fill="#71584e" text-anchor="middle">FLEXIBEL EN NABIJ</text><text class="award" x="1015" y="352" fill="#bd006f" font-size="19">✓</text></g>
+   <g id="slot-individueel" class="slot"><rect class="slot-fill" x="455" y="500" width="260" height="60" rx="13" fill="#ddbfaf" stroke="#b98267" stroke-width="2"/><text class="slot-label" x="585" y="527" font-size="25" font-weight="900" fill="#71584e" text-anchor="middle">INDIVIDUEEL</text><text class="slot-small" x="585" y="547" font-size="13" fill="#71584e" text-anchor="middle">MICRONIVEAU</text><text class="award" x="698" y="512" fill="#bd006f" font-size="19">✓</text></g>
+   <g id="slot-zekerheid" class="slot"><rect class="slot-fill" x="388" y="250" width="197" height="110" rx="7" fill="#aebbc6"/><text class="slot-label" x="487" y="292" font-size="23" font-weight="900" fill="#fff" text-anchor="middle">MEEDOEN</text><text class="slot-small" x="487" y="323" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">ZEKERHEID</text><text class="award" x="561" y="275" fill="#fff" font-size="23">✓</text></g>
+   <g id="slot-cohesie" class="slot"><rect class="slot-fill" x="595" y="250" width="197" height="110" rx="7" fill="#f4cb86"/><text class="slot-label" x="693" y="292" font-size="22" font-weight="900" fill="#fff" text-anchor="middle">ERBIJ HOREN</text><text class="slot-small" x="693" y="323" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">COHESIE</text><text class="award" x="769" y="275" fill="#fff" font-size="23">✓</text></g>
+   <g id="slot-inclusie" class="slot"><rect class="slot-fill" x="388" y="367" width="197" height="110" rx="7" fill="#e59e93"/><text class="slot-label" x="487" y="413" font-size="22" font-weight="900" fill="#fff" text-anchor="middle">ERTOE DOEN</text><text class="slot-small" x="487" y="444" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">INCLUSIE</text><text class="award" x="561" y="394" fill="#fff" font-size="23">✓</text></g>
+   <g id="slot-empowerment" class="slot"><rect class="slot-fill" x="595" y="367" width="197" height="110" rx="7" fill="#cba1b5"/><text class="slot-label" x="693" y="413" font-size="22" font-weight="900" fill="#fff" text-anchor="middle">JEZELF ZIJN</text><text class="slot-small" x="693" y="444" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">EMPOWERMENT</text><text class="award" x="769" y="394" fill="#fff" font-size="23">✓</text></g>
+   <g id="track"></g>
+   <g id="pawn" class="board-stage"><circle cx="0" cy="0" r="25" fill="#f10094" stroke="#fff" stroke-width="5"/><text x="0" y="9" text-anchor="middle" fill="white" font-size="32" font-weight="900">★</text></g>
+  </svg>
+</div>
+<section class="game-body" aria-label="Huidige speelkaart en keuzes">
+ <h2 id="title">Het Skatepark: De Start</h2>
+ <p id="story">Jongeren in een dorp willen hun skatebaan uitbreiden met een overkapping en bankjes. De baan is een populaire hangplek, maar omwonenden ervaren overlast van brommers, muziek en mogelijk drugsgebruik. Het contact tussen de jongeren en de buurt is verslechterd. De gemeente wil eerst weten of er voldoende draagvlak is.</p>
+ <div class="category-list" id="categories"></div>
+ <hr class="story-divider"/>
+ <h3 class="choices-heading" id="choices-title">WAT DOE JE?</h3>
+ <div class="choices" id="choices"></div>
+</section>
+<section class="bottom" aria-label="Spelinstellingen en voortgang">
+ <div class="joker-row"><div><div class="joker-label">🃏 Jokerkaarten</div><div class="joker-small"><span id="joker-number">2</span> van 2 over</div></div><button class="pill" id="joker-btn" disabled>↶ Zet Joker in</button></div>
+ <div id="joker-panel" class="help hide"></div>
+ <div class="pill-row"><button id="rules-btn" class="pill">▣ Regels</button><button id="group-btn" class="pill">♧ Solo / groep</button><button id="restart-btn" class="pill">↶ Restart</button></div>
+ <div id="rules-panel" class="help hide"><h3>Spelregels</h3><p>Lees kaart 1. Kies een interventie en volg de bijbehorende kaart. Iedere kaart levert drie begrippen van Sociale Kwaliteit op. Bereik de finish én verzamel alle acht begrippen om te winnen. Je hebt twee Jokers om terug te keren naar een eerdere keuze.</p></div>
+ <div class="route"><span>GESPEELDE KAARTEN</span><strong id="route">1</strong></div>
+ <div class="concept-progress"><div class="progress-title"><span>SOCIALE KWALITEIT</span><b id="count">0 / 8</b></div><div class="bar"><div id="bar-fill"></div></div><div class="pills" id="pills"></div></div>
+</section>
+</main>
+<script>
+'use strict';
+// This is a reconstruction of the first in-chat Sociality prototype. It is deliberately
+// self-contained: no external images, audio files, frameworks or internet access required.
+const cards = {
+'1':{title:'Het Skatepark: De Start',text:'Jongeren in een dorp willen hun skatebaan uitbreiden met een overkapping en bankjes. De baan is een populaire hangplek, maar omwonenden ervaren overlast van brommers, muziek en mogelijk drugsgebruik. Het contact tussen de jongeren en de buurt is verslechterd. De gemeente wil eerst weten of er voldoende draagvlak is.',cats:[],choices:[['Je richt je eerst op gesprekken met de jongeren.','1A'],['Je gaat voor draagvlak en richt je op het verzet in de buurt.','1B']]},
+'1A':{title:'Begin bij de jongeren',text:'Je richt je eerst op gesprekken met jongeren om te horen wat zij nodig hebben in de wijk.',cats:['inclusie','formeel','collectief'],choices:[['Nodig jongeren uit voor overleg op kantoor.','2A'],['Praat zonder agenda op straat met de jongeren.','2B']]},
+'1B':{title:'Begin bij de inwoners',text:'Je besluit naar de zorgen van inwoners te luisteren, zonder hen te proberen te overtuigen.',cats:['cohesie','formeel','collectief'],choices:[['Organiseer een open inwonersavond.','2C'],['Praat individueel met inwoners op straat.','2D']]},
+'2A':{title:'Een jongerenoverleg',text:'Jongeren vertellen dat ze zich jarenlang buitengesloten hebben gevoeld bij beslissingen over de wijk. Ook maken zij zich zorgen over het drugsgebruik van een meisje.',cats:['cohesie','formeel','collectief'],choices:[['Betrek de jongeren actief bij het skatepark.','3A'],['Zoek contact met het meisje.','3B']]},
+'2B':{title:'Gesprek op straat',text:'De jongeren vertellen dat er weinig voor hen te doen is en dat ze een plek willen waar ze niet worden weggestuurd. Ook maken ze zich zorgen over een meisje uit de groep.',cats:['cohesie','informeel','collectief'],choices:[['Betrek de jongeren actief bij het vervolg.','3A'],['Zoek contact met het meisje over drugsgebruik.','3B'],['Regel een tijdelijke pop-up skateplek.','3C']]},
+'2C':{title:'Open inwonersavond',text:'De bijeenkomst verloopt moeizaam. Sommige bewoners domineren de discussie. Zorgen over drugs, overlast en woningwaarde komen naar voren.',cats:['cohesie','formeel','collectief'],choices:[['Richt je op de spanningen en de veiligheid in de wijk.','5A'],['Betrek de jongeren bij de zorgen.','3A'],['Zoek contact met het meisje.','3B']]},
+'2D':{title:'Gesprek op straat',text:'Buurtbewoners vertellen dat het probleem groter is dan het skatepark. Er heerst wantrouwen en een onveilige sfeer.',cats:['cohesie','informeel','collectief'],choices:[['Richt je op het gevoel van veiligheid in de wijk.','5A'],['Vraag twee welwillende bewoners om mee te denken.','3D']]},
+'3A':{title:'Jongeren betrekken',text:'Je besluit de talenten van jongeren te benutten en hun positie te versterken. Je wilt ook dat zij de zorgen van buurtbewoners begrijpen.',cats:['empowerment','informeel','collectief'],choices:[['Leid twee jongeren op tot jeugdambassadeurs.','4A'],['Laat de jongeren hun plan presenteren bij een buurtpicknick.','4B'],['Organiseer een gezamenlijke buurtpicknick.','4C']]},
+'3B':{title:'Gesprek over drugs',text:'Een meisje vertelt dat ze zo weinig geld heeft dat ze soms wiet heeft verkocht. Haar situatie blijkt complexer dan gedacht.',cats:['zekerheid','informeel','individueel'],choices:[['Voer een vervolggesprek over middelengebruik.','4E'],['Betrek haar bij een buurtpicknick.','4C']]},
+'3C':{title:'Pop-up skatepark',text:'Er is een tijdelijke skateplek, maar jongeren en inwoners zijn onvoldoende betrokken bij de beslissingen. Het draagvlak ontbreekt.',cats:['zekerheid','informeel','collectief'],choices:[],ending:'fail'},
+'3D':{title:'Plan van inwoners',text:'Twee bewoners maken een plan met aandacht voor veiligheid. Je twijfelt of het voorstel voldoende aansluit bij de jongeren.',cats:['zekerheid','informeel','collectief'],choices:[['Organiseer samen een buurtpicknick.','4C'],['Laat het reglement vertalen naar jongerentaal.','4D']]},
+'4A':{title:'Jeugdambassadeurs',text:'Twee jongeren worden jeugdambassadeurs. Eén van hen ziet een kans voor een stage bij de gemeente en vraagt je hulp.',cats:['empowerment','formeel','individueel'],choices:[['Help de jongere aan de stageplek.','5D'],['Betrek hem bij vergunningen en voorzieningen.','5C']]},
+'4B':{title:'Jongerenplan',text:'Jongeren presenteren plannen. Sommige bewoners zijn onder de indruk; anderen blijven wantrouwig. Er ontstaan mogelijkheden voor samenwerking.',cats:['empowerment','formeel','collectief'],choices:[['Richt je op het wantrouwen van bewoners.','5A'],['Betrek lokale ondernemers.','5B'],['Werk samen aan vergunningen en voorzieningen.','5C']]},
+'4C':{title:'Gesprek op straat',text:'Jongeren en bewoners ontmoeten elkaar bij een buurtpicknick. Nieuwe ideeën ontstaan, maar niet iedereen vertrouwt elkaar al.',cats:['cohesie','informeel','collectief'],choices:[['Richt je op veiligheid en spanningen.','5A'],['Betrek lokale ondernemers.','5B'],['Regel vergunningen en voorzieningen.','5C']]},
+'4D':{title:'Jeugdtaal',text:'De gekozen aanpak heeft de jongeren niet werkelijk betrokken. Belangrijke kansen op verbinding zijn gemist.',cats:['zekerheid','formeel','collectief'],choices:[],ending:'fail'},
+'4E':{title:'Individuele aanpak',text:'Je richt je op de situatie van het meisje, maar het groepsprobleem rond het skatepark blijft onopgelost.',cats:['zekerheid','formeel','individueel'],choices:[],ending:'fail'},
+'5A':{title:'Gaan voor veiligheid',text:'Je hebt aandacht voor veiligheid en spanningen, maar de wens en invloed van de jongeren raken uit beeld. Het skatepark komt er voorlopig niet.',cats:['cohesie','informeel','collectief'],choices:[],ending:'fail'},
+'5B':{title:'Lokale ondernemers',text:'Jongeren en bewoners werken met lokale ondernemers aan plannen voor een haalbare skateplek, inclusief sponsoring en een geluidswal.',cats:['empowerment','informeel','individueel'],choices:[['Ga naar de afronding.','6']]},
+'5C':{title:'Voorzieningen regelen',text:'Jongeren, inwoners en de gemeente werken samen aan een concreet plan en aan de benodigde vergunningen en voorzieningen.',cats:['inclusie','formeel','collectief'],choices:[['Ga naar de afronding.','6']]},
+'5D':{title:'Bijdragen aan kansen',text:'Je helpt één jongere, maar het collectieve draagvlak voor het skatepark ontbreekt. Veel betrokkenen voelen zich niet vertegenwoordigd.',cats:['empowerment','formeel','individueel'],choices:[],ending:'fail'},
+'6':{title:'Het Skatepark is een succes!',text:'Het skatepark is gerealiseerd. Jongeren en inwoners hebben samengewerkt en afspraken gemaakt over veiligheid, toezicht en beheer.',cats:[],choices:[],ending:'finish'}
+};
+const names={zekerheid:'Meedoen',cohesie:'Erbij horen',inclusie:'Ertoe doen',empowerment:'Jezelf zijn',collectief:'Collectief',individueel:'Individueel',formeel:'Formeel',informeel:'Informeel'};
+const colors={zekerheid:'#477ab9',cohesie:'#e6a21d',inclusie:'#c51c2b',empowerment:'#842386',collectief:'#ea008c',individueel:'#ea008c',formeel:'#ea008c',informeel:'#ea008c'};
+let current='1',path=['1'],seen=new Set(['1']),jokers=2,group=false,jokerOpen=false;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ns='http://www.w3.org/2000/svg';
+const st=id=>id==='1'?0:Math.min(6,parseInt(id[0])||0);
+function makeTrack(){const g=$('track');for(let i=0;i<=6;i++){const x=98+i*149;const lab=i===0?'START':i===6?'FINISH':String(i);const gg=document.createElementNS(ns,'g');gg.setAttribute('class','stage-cell');gg.setAttribute('data-step',i);gg.innerHTML=`<rect x="${x}" y="580" width="130" height="44" rx="12" fill="#dfc0b9"/><text x="${x+65}" y="609" text-anchor="middle" font-size="${i===0||i===6?19:23}" font-weight="900" fill="#6e5553">${lab}</text>`;g.append(gg)}}
+makeTrack();
+function render(){const node=cards[current];const earned=new Set([...seen].flatMap(id=>cards[id].cats));
+ $('title').textContent=node.title;$('story').textContent=node.text;
+ $('categories').innerHTML=node.cats.map(c=>`<span class="category">${esc(names[c])}</span>`).join('');
+ const cp=$('choices');cp.innerHTML='';let ct=node.ending==='fail'?'DEZE ROUTE LOOPT VAST':node.ending==='finish'?(earned.size===8?'GEFELICITEERD!':'FINISH BEREIKT'):'WAT DOE JE?';$('choices-title').textContent=ct;
+ for(const [label,id] of node.choices){let b=document.createElement('button');b.className='choice';b.type='button';b.innerHTML=`<span class="letter">${esc(id)}</span><span class="detail">${esc(label)}</span><span class="arr">→</span>`;b.addEventListener('click',()=>{current=id;path.push(id);seen.add(id);jokerOpen=false;render()});cp.append(b)}
+ if(node.ending){const box=document.createElement('div');box.className=node.ending==='finish'&&earned.size===8?'complete':'feedback';box.innerHTML=node.ending==='fail'?'Dit spoor is afgelopen zonder dat het skatepark is gerealiseerd. Gebruik een Joker om een eerdere keuze te herzien.':earned.size===8?'<h3>Je hebt gewonnen!</h3>Je hebt de finish gehaald en alle acht begrippen van Sociale Kwaliteit verzameld.':'Het skatepark is gerealiseerd, maar er ontbreken nog '+(8-earned.size)+' begrippen. Gebruik een Joker om een ander spoor te verkennen.';cp.append(box);if(node.ending==='finish'&&earned.size===8){const b=document.createElement('button');b.className='btn-primary';b.textContent='Speel opnieuw';b.onclick=restart;cp.append(b)}}
+ if(group&&node.choices.length){const p=document.createElement('p');p.style.fontSize='16px';p.style.color='#c9bac3';p.textContent='Overleg met de groep en maak samen een keuze op basis van consensus.';cp.append(p)}
+ for(const [c,name] of Object.entries(names)){const tile=$('slot-'+c);const yes=earned.has(c);tile.classList.toggle('earned',yes);const fill=tile.querySelector('.slot-fill');if(c==='zekerheid'||c==='cohesie'||c==='inclusie'||c==='empowerment'){fill.setAttribute('fill',yes?colors[c]:({'zekerheid':'#aebbc6','cohesie':'#f4cb86','inclusie':'#e59e93','empowerment':'#cba1b5'}[c]))}else fill.setAttribute('fill',yes?'#ed008c':'#ddbfaf')}
+ const step=st(current);for(const el of document.querySelectorAll('.stage-cell')){const i=Number(el.dataset.step);el.classList.toggle('active',i===step);el.classList.toggle('past',i<step)}
+ $('pawn').setAttribute('transform',`translate(${163+149*step} 571)`);
+ $('joker-number').textContent=jokers;$('joker-btn').disabled=jokers===0||path.length<2||node.ending==='finish'&&earned.size===8;
+ $('route').textContent=path.join(' → ');$('count').textContent=earned.size+' / 8';$('bar-fill').style.width=earned.size*12.5+'%';
+ $('pills').innerHTML=Object.entries(names).map(([c,name])=>`<span class="mini ${earned.has(c)?'on':''}">${earned.has(c)?'✓':'○'} ${esc(name)}</span>`).join('');
+ renderJoker();
+}
+function renderJoker(){const box=$('joker-panel');box.innerHTML='';box.classList.toggle('hide',!jokerOpen);if(!jokerOpen)return;box.innerHTML='<h3>Kies een eerdere kaart</h3><p>Je hebt twee Jokers voor het hele spel. Ontdekte begrippen blijven verzameld.</p>';
+ // Revisit a previously played decision card, including the start card.
+ const candidates=[...new Set(path.slice(0,-1))].filter(id=>cards[id].choices.length>0);
+ for(const id of candidates){const b=document.createElement('button');b.className='pill';b.textContent=`Kaart ${id} — ${cards[id].title}`;b.onclick=()=>{jokers--;current=id;path.push(id);seen.add(id);jokerOpen=false;render()};box.append(b)}
+}
+function restart(){current='1';path=['1'];seen=new Set(['1']);jokers=2;group=false;jokerOpen=false;$('group-btn').textContent='♧ Solo / groep';$('rules-panel').classList.add('hide');render()}
+$('joker-btn').addEventListener('click',()=>{jokerOpen=!jokerOpen;renderJoker()});$('rules-btn').addEventListener('click',()=>$('rules-panel').classList.toggle('hide'));
+$('group-btn').addEventListener('click',()=>{group=!group;$('group-btn').textContent=group?'♧ Groepsmodus aan':'♧ Solo / groep';render()});$('restart-btn').addEventListener('click',restart);
+render();
+</script>
+</body>
+</html>
