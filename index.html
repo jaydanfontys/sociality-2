@@ -1,53 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sociality — Het Skatepark | Eerste in-chat versie</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#21151d">
+<title>Sociality — Het Skatepark | InnerGames</title>
 <link rel="stylesheet" href="styles/game.css">
 </head>
 <body>
-<main class="shell">
-<header class="header"><div><div class="eyebrow">INNERGAMES × HAN</div><div class="logo">SOCIALITY <span class="heart">♥</span></div><div class="sub">EEN KIJK OP SOCIALE KWALITEIT</div></div><div class="story-marker"><span>1ST STORY</span><strong>HET SKATEPARK</strong></div></header>
-<div class="board-wrap">
-  <svg id="board" viewBox="0 0 1175 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sociality speelbord met acht categorieën en een pion op het speelspoor">
-   <defs><pattern id="wood" patternUnits="userSpaceOnUse" width="1200" height="74"><rect width="1200" height="74" fill="#352018"/><path d="M0 20H1200 M0 21H1200" stroke="#503326" stroke-width="4"/><path d="M0 23H1200" stroke="#241b17" opacity=".6"/></pattern></defs>
-   <rect width="1175" height="700" fill="url(#wood)"/>
-   <polygon points="119,76 1055,76 1147,680 33,680" fill="#ead0a8" stroke="#bd8c63" stroke-width="7"/>
-   <polygon points="139,93 1038,93 1121,658 60,658" fill="#f8e7cd"/>
-   <text x="207" y="149" fill="#ed008c" font-weight="900" font-size="39">SOCIALITY</text>
-   <text x="207" y="177" fill="#946279" font-weight="800" font-size="15">HET SKATEPARK</text>
-   <text x="940" y="159" fill="#955f72" font-weight="800" font-size="16">SPELBORD</text>
-   <text x="940" y="182" fill="#955f72" font-size="14">INNERGAMES</text>
-   <g id="slot-collectief" class="slot"><rect class="slot-fill" x="460" y="130" width="253" height="65" rx="13" fill="#ddbfaf" stroke="#b98267" stroke-width="2"/><text class="slot-label" x="586" y="160" font-size="24" font-weight="900" fill="#71584e" text-anchor="middle">COLLECTIEF</text><text class="slot-small" x="586" y="180" font-size="13" fill="#71584e" text-anchor="middle">MESO EN MACRO</text><text class="award" x="704" y="141" fill="#bd006f" font-size="19">✓</text></g>
-   <g id="slot-formeel" class="slot"><rect class="slot-fill" x="146" y="339" width="218" height="79" rx="14" fill="#ddbfaf" stroke="#b98267" stroke-width="2"/><text class="slot-label" x="255" y="373" font-size="26" font-weight="900" fill="#71584e" text-anchor="middle">FORMEEL</text><text class="slot-small" x="255" y="399" font-size="13" fill="#71584e" text-anchor="middle">METHODEN EN REGELS</text><text class="award" x="347" y="353" fill="#bd006f" font-size="19">✓</text></g>
-   <g id="slot-informeel" class="slot"><rect class="slot-fill" x="813" y="339" width="219" height="79" rx="14" fill="#ddbfaf" stroke="#b98267" stroke-width="2"/><text class="slot-label" x="922" y="374" font-size="26" font-weight="900" fill="#71584e" text-anchor="middle">INFORMEEL</text><text class="slot-small" x="922" y="399" font-size="13" fill="#71584e" text-anchor="middle">FLEXIBEL EN NABIJ</text><text class="award" x="1015" y="352" fill="#bd006f" font-size="19">✓</text></g>
-   <g id="slot-individueel" class="slot"><rect class="slot-fill" x="455" y="500" width="260" height="60" rx="13" fill="#ddbfaf" stroke="#b98267" stroke-width="2"/><text class="slot-label" x="585" y="527" font-size="25" font-weight="900" fill="#71584e" text-anchor="middle">INDIVIDUEEL</text><text class="slot-small" x="585" y="547" font-size="13" fill="#71584e" text-anchor="middle">MICRONIVEAU</text><text class="award" x="698" y="512" fill="#bd006f" font-size="19">✓</text></g>
-   <g id="slot-zekerheid" class="slot"><rect class="slot-fill" x="388" y="250" width="197" height="110" rx="7" fill="#aebbc6"/><text class="slot-label" x="487" y="292" font-size="23" font-weight="900" fill="#fff" text-anchor="middle">MEEDOEN</text><text class="slot-small" x="487" y="323" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">ZEKERHEID</text><text class="award" x="561" y="275" fill="#fff" font-size="23">✓</text></g>
-   <g id="slot-cohesie" class="slot"><rect class="slot-fill" x="595" y="250" width="197" height="110" rx="7" fill="#f4cb86"/><text class="slot-label" x="693" y="292" font-size="22" font-weight="900" fill="#fff" text-anchor="middle">ERBIJ HOREN</text><text class="slot-small" x="693" y="323" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">COHESIE</text><text class="award" x="769" y="275" fill="#fff" font-size="23">✓</text></g>
-   <g id="slot-inclusie" class="slot"><rect class="slot-fill" x="388" y="367" width="197" height="110" rx="7" fill="#e59e93"/><text class="slot-label" x="487" y="413" font-size="22" font-weight="900" fill="#fff" text-anchor="middle">ERTOE DOEN</text><text class="slot-small" x="487" y="444" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">INCLUSIE</text><text class="award" x="561" y="394" fill="#fff" font-size="23">✓</text></g>
-   <g id="slot-empowerment" class="slot"><rect class="slot-fill" x="595" y="367" width="197" height="110" rx="7" fill="#cba1b5"/><text class="slot-label" x="693" y="413" font-size="22" font-weight="900" fill="#fff" text-anchor="middle">JEZELF ZIJN</text><text class="slot-small" x="693" y="444" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">EMPOWERMENT</text><text class="award" x="769" y="394" fill="#fff" font-size="23">✓</text></g>
-   <g id="track"></g>
-   <g id="pawn" class="board-stage"><circle cx="0" cy="0" r="25" fill="#f10094" stroke="#fff" stroke-width="5"/><text x="0" y="9" text-anchor="middle" fill="white" font-size="32" font-weight="900">★</text></g>
-  </svg>
+<div class="sg-shell" id="sg-app">
+  <header class="sg-topbar">
+    <div class="sg-brand"><span class="sg-heart" aria-hidden="true">♥<span>◉ ◉</span></span><div><b>SOCIALITY</b><small>EEN KIJK OP SOCIALE KWALITEIT</small></div></div>
+    <div class="sg-topright"><span class="sg-proto">DIGITAL PLAYTEST · V4</span><button class="sg-mini" id="sg-rules" type="button">ⓘ <span>Spelregels</span></button><button class="sg-mini" id="sg-restart" type="button">↻ <span>Opnieuw</span></button></div>
+  </header>
+  <div class="sg-storybar"><div><span class="sg-kicker">1ST STORY</span> <strong>HET SKATEPARK</strong> <span class="sg-secondary">— Speel samen, bepaal de uitkomst</span></div><div id="sg-round" class="sg-round">START</div></div>
+  <div class="sg-layout">
+    <section class="sg-tablebox" aria-label="Interactief Sociality spelbord">
+      <div class="sg-tabletitle"><span>HET SPELBORD</span><span class="sg-tablehint">● De roze pion beweegt mee met je keuzes</span></div>
+      <div class="sg-tablecloth">
+        <div class="sg-boardframe">
+          <img id="sg-board-img" alt="Het originele Sociality spelbord met de acht sociale kwaliteit begrippen en zes speelstappen" draggable="false">
+          <div class="sg-boardmarkers" id="sg-boardmarkers" aria-label="Verzamelde begrippen"></div>
+          <div class="sg-pawn" id="sg-pawn"><span class="sg-pawnhead">♥</span><span class="sg-pawnshadow"></span></div>
+        </div>
+      </div>
+      <div class="sg-deskbottom"><div class="sg-deckstack" aria-hidden="true"><div class="sg-deck">1ST STORY<br><strong>HET SKATEPARK</strong><small>SPEELKAARTEN</small></div><div class="sg-decklabel">21 originele speelkaarten</div></div><div class="sg-progressbox"><div class="sg-progresshead"><strong>SOCIALE KWALITEIT</strong><b id="sg-progress-num">0 / 8</b></div><div class="sg-bar"><span id="sg-barfill"></span></div><div class="sg-tokens" id="sg-tokens"></div></div></div>
+    </section>
+    <aside class="sg-aside">
+      <div class="sg-cardpanel">
+        <div class="sg-cardheading"><span>HUIDIGE SPEELKAART</span><span class="sg-badge" id="sg-cardnumber">KAART 1</span></div>
+        <button class="sg-card-view" id="sg-card-view" type="button" title="Vergroot deze kaart" aria-label="Vergroot speelkaart"><img id="sg-card-img" alt="Huidige speelkaart"><span class="sg-expand">⤢ Vergroot kaart</span></button><div class="sg-card-controls"><button type="button" id="sg-flip-inline" class="sg-flip-inline">⤺ Kaart omdraaien</button></div>
+        <div class="sg-cardmeta"><strong id="sg-cardtitle">HET SKATEPARK: DE START</strong><div id="sg-cardcats" class="sg-catline"></div></div>
+        <div class="sg-actions"><h2 id="sg-choices-title">WAT DOE JE?</h2><p class="sg-choicenote" id="sg-choice-note">Lees eerst de kaart. Overleg en maak samen een keuze.</p><div id="sg-choices"></div><div id="sg-ending" class="sg-ending" hidden></div></div>
+      </div>
+      <div class="sg-jokers"><div><strong>🃏 JOKERKAARTEN</strong><span id="sg-joker-count">2 over</span></div><button id="sg-use-joker" type="button" disabled>Gebruik een joker ↶</button></div>
+      <div class="sg-trail"><strong>GEKOZEN ROUTE</strong><div id="sg-history">1</div></div>
+    </aside>
+  </div>
+  <footer class="sg-footer"><span>Sociality · Prototype voor InnerGames · Originele spelmaterialen van InnerGames &amp; HAN</span><span>Deze testversie bewaart voortgang alleen in deze browser.</span></footer>
 </div>
-<section class="game-body" aria-label="Huidige speelkaart en keuzes">
- <h2 id="title">Het Skatepark: De Start</h2>
- <p id="story">Jongeren in een dorp willen hun skatebaan uitbreiden met een overkapping en bankjes. De baan is een populaire hangplek, maar omwonenden ervaren overlast van brommers, muziek en mogelijk drugsgebruik. Het contact tussen de jongeren en de buurt is verslechterd. De gemeente wil eerst weten of er voldoende draagvlak is.</p>
- <div class="category-list" id="categories"></div>
- <hr class="story-divider"/>
- <h3 class="choices-heading" id="choices-title">WAT DOE JE?</h3>
- <div class="choices" id="choices"></div>
-</section>
-<section class="bottom" aria-label="Spelinstellingen en voortgang">
- <div class="joker-row"><div><div class="joker-label">🃏 Jokerkaarten</div><div class="joker-small"><span id="joker-number">2</span> van 2 over</div></div><button class="pill" id="joker-btn" disabled>↶ Zet Joker in</button></div>
- <div id="joker-panel" class="help hide"></div>
- <div class="pill-row"><button id="rules-btn" class="pill">▣ Regels</button><button id="group-btn" class="pill">♧ Solo / groep</button><button id="restart-btn" class="pill">↶ Restart</button></div>
- <div id="rules-panel" class="help hide"><h3>Spelregels</h3><p>Lees kaart 1. Kies een interventie en volg de bijbehorende kaart. Iedere kaart levert drie begrippen van Sociale Kwaliteit op. Bereik de finish én verzamel alle acht begrippen om te winnen. Je hebt twee Jokers om terug te keren naar een eerdere keuze.</p></div>
- <div class="route"><span>GESPEELDE KAARTEN</span><strong id="route">1</strong></div>
- <div class="concept-progress"><div class="progress-title"><span>SOCIALE KWALITEIT</span><b id="count">0 / 8</b></div><div class="bar"><div id="bar-fill"></div></div><div class="pills" id="pills"></div></div>
-</section>
-</main>
+<div class="sg-overlay" id="sg-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="sg-modal-title"><div class="sg-dialog"><div class="sg-dialog-head"><h2 id="sg-modal-title"></h2><button id="sg-modal-close" type="button" class="sg-close" aria-label="Sluiten">✕</button></div><div id="sg-modal-body"></div></div></div>
+<!-- Assets extracted into assets/ for editing -->
 <script src="js/game.js" defer></script>
-</body>
-</html>
+</body></html>
